@@ -1,14 +1,14 @@
 
-import { TrainRepository, TrainStatus } from "./train/train"
+import { TrainStatusAdapter, TrainStatus } from "./train/train"
 import { RouteRepository, RouteStation } from "./route/route"
 import { addAbortSignal } from "node:stream"
 
 export default class RailwayTracker {
-    private trains: TrainRepository
+    private trains: TrainStatusAdapter
     private routes: RouteRepository
     private tickets: TicketRepository
 
-    constructor(trains: TrainRepository, routes: RouteRepository, tickets: TicketRepository) {
+    constructor(trains: TrainStatusAdapter, routes: RouteRepository, tickets: TicketRepository) {
         this.trains = trains
         this.routes = routes
         this.tickets = tickets
