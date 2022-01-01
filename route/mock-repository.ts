@@ -20,7 +20,7 @@ const routes: { [trainId: string]: Route } = {
 				distance: 48,
 			}, {
 				stationId: "ESK",
-				displayName: "Eskışehir",
+				displayName: "Eskişehir",
 				distance: 80,
 			}, {
 				stationId: "BUU",
@@ -52,7 +52,7 @@ const routes: { [trainId: string]: Route } = {
 				distance:295,
 			}, {
 				stationId: "ISC",
-				displayName: "İstanbul (Söğüŧlüçeşme)",
+				displayName: "İstanbul (Söğütlüçeşme)",
 				distance:310,
 			}, {
 				stationId: "IBA",

@@ -24,17 +24,24 @@ export default class RailwayTracker {
 
         let speed = 0
         let predictiveSpeed = 0
+        let message: string | null = null
         this.trains.subscribe(train, (t: TrainStatus) => {
+            const state = t.state
+            if (state.service === "canceled" || state.service === "delayed") {
+                message = state.cause
+            }
+
             speed = t.speed
             if (speed != 0) predictiveSpeed = speed
             
-            let stationsPast = [], stationAt = null, stationsAhead = [], start, destination
+            let stationsPast = [], stationAt = null, stationsAhead = [],
+                from: RouteStation = null!, to: RouteStation = null!
             for (const station of route.stations) {
                 if (station.stationId == ticket.from) {
-                    start: station
+                    from = station
                 }
                 if (station.stationId == ticket.to) {
-                    destination = station
+                    to = station
                     break
                 }
 
@@ -52,9 +59,15 @@ export default class RailwayTracker {
                 stationAt,
                 stationsAhead,
                 stationsPast,
-                message: null
+                message: message,
+                from,
+                to,
             })
         })
+    }
+
+    eta(speed: number) {
+        //
     }
 }
 
@@ -83,6 +96,16 @@ export interface TrainReport {
      * The stations ahead of the train.
      */
     stationsAhead: RouteStation[]
+
+    /**
+     * The start of the journey.
+     */
+    from: RouteStation
+
+    /**
+     * The destination of the journey.
+     */
+    to: RouteStation
 
     /**
      * Message for delay or cancellation, if any.

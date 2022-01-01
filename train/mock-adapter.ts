@@ -17,7 +17,7 @@ export default class MockTrainStatusAdapter implements TrainStatusAdapter {
             callback({
                 train: t,
                 state: { service: "running" },
-                lineTraveled: traveled += 20,
+                lineTraveled: traveled += 10,
                 speed: 240
             })
         })()
