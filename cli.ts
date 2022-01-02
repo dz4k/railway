@@ -26,7 +26,7 @@ async function printReport(r: TrainReport) {
 
     let map = ""
     for (const station of r.stationsPast.slice(-3)) {
-        map += `===${station.displayName}`
+        map += `===[${station.displayName}]`
     }
     map = spaces(72 - map.length) + map
     if (r.stationAt) {
@@ -35,7 +35,7 @@ async function printReport(r: TrainReport) {
         map += `===🚄---`
     }
     for (const station of r.stationsAhead.slice(0, 3)) {
-        map += `${station.displayName}---`
+        map += `[${station.displayName}]---`
     }
     console.log(map)
 }
