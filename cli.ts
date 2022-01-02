@@ -21,7 +21,7 @@ export default async function runCommandLine(
 
 async function printReport(r: TrainReport) {
     clear()
-    console.log(`${spaces(75)}ETA:   ${r.eta ?? '--'} min.`)
+    console.log(`${spaces(75)}ETA:   ${r.eta?.toFixed(0) ?? '--'} min.`)
     console.log(`${spaces(75)}Speed: ${r.speed} km/h`)
 
     let map = ""
