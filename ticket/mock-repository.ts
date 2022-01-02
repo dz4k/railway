@@ -1,3 +1,5 @@
+import { TicketID } from "../core/types"
+import { Ticket, TicketRepository } from "./ticket"
 
 const tickets: { [_: string]: Ticket } = {
     '2131245': {

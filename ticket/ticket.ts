@@ -1,10 +1,11 @@
+import { StationID, TicketID, TrainID } from "../core/types";
 
-interface Ticket {
+export interface Ticket {
     from: StationID
     to: StationID
     train: TrainID
 }
 
-interface TicketRepository {
+export interface TicketRepository {
     ticket(id: TicketID): Ticket | null
 }

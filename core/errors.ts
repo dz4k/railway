@@ -1,3 +1,3 @@
 
-class NoTicket extends Error {}
-class NoRoute extends Error {}
+export class NoTicket extends Error {}
+export class NoRoute extends Error {}

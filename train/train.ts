@@ -1,3 +1,4 @@
+import { TrainID } from "../core/types"
 
 export type Train = {
 	id: TrainID

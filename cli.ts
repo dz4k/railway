@@ -2,44 +2,50 @@
 import * as readline from "readline"
 import { stdin, stdout } from "process"
 import RailwayTracker, { TrainReport } from "./tracker"
+import { TrainStatusAdapter } from "./train/train"
+import { RouteRepository } from "./route/route"
+import { TicketRepository } from "./ticket/ticket"
+import { clear } from "console"
 
 let rl: readline.Interface
 
-export default async function runCommandLine(tracker: RailwayTracker) {
+export default async function runCommandLine(
+    trains: TrainStatusAdapter, routes: RouteRepository, tickets: TicketRepository) {
     rl = readline.createInterface({ input: stdin, output: stdout })
-
-    const code = await ask("Please enter the code on your ticket.")
-    tracker.track(code, printReport)
+    
+    const code = await ask("Please enter the code on your ticket: ")
+    const tracker = new RailwayTracker(code, trains, routes, tickets);
+    tracker.track(printReport)
     rl.close()
 }
 
-function printReport(r: TrainReport) {
-    readline.clearLine(stdout, -1)
-    readline.clearLine(stdout, -1)
-    readline.clearLine(stdout, -1)
-    
-    console.log(`ETA:   ${r.eta ?? '--'}`)
-    console.log(`Speed: ${r.speed} km/h`)
+async function printReport(r: TrainReport) {
+    clear()
+    console.log(`${spaces(72)}ETA:   ${r.eta ?? '--'} min.`)
+    console.log(`${spaces(72)}Speed: ${r.speed} km/h`)
 
+    let map = ""
     for (const station of r.stationsPast.slice(-3)) {
-        stdout.write(`===${station.displayName}`)
+        map += `===${station.displayName}`
     }
+    map = spaces(72 - map.length) + map
     if (r.stationAt) {
-        stdout.write(`===[🚄 ${r.stationAt.displayName}]===`)
+        map += `===[🚄 ${r.stationAt.displayName}]---`
     } else {
-        stdout.write(`=🚄=`)
+        map += `=🚄-`
     }
-
-
-    for (const station of r.stationsPast.slice(0, 3)) {
-        stdout.write(`${station.displayName}===`)
+    for (const station of r.stationsAhead.slice(0, 3)) {
+        map += `${station.displayName}---`
     }
-
-    stdout.write('===\n')
+    console.log(map)
 }
 
 function ask(q: string): Promise<string> {
     return new Promise((resolve, reject) => {
         rl.question(q, resolve)
     })
+}
+
+function spaces(n: number) {
+    return Array(Math.abs(n)).fill(' ').join('')
 }

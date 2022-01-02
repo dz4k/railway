@@ -13,11 +13,11 @@ export default class MockTrainStatusAdapter implements TrainStatusAdapter {
     _fakeTrain(t: Train, callback: (t: TrainStatus) => void) {
         let traveled = 20;
         (function loop() {
-            setTimeout(loop, 10000 + Math.random() * 4000)
+            setTimeout(loop, 1000 + Math.random() * 400)
             callback({
                 train: t,
                 state: { service: "running" },
-                lineTraveled: traveled += 10,
+                lineTraveled: traveled += 5,
                 speed: 240
             })
         })()
