@@ -21,8 +21,8 @@ export default async function runCommandLine(
 
 async function printReport(r: TrainReport) {
     clear()
-    console.log(`${spaces(72)}ETA:   ${r.eta ?? '--'} min.`)
-    console.log(`${spaces(72)}Speed: ${r.speed} km/h`)
+    console.log(`${spaces(75)}ETA:   ${r.eta ?? '--'} min.`)
+    console.log(`${spaces(75)}Speed: ${r.speed} km/h`)
 
     let map = ""
     for (const station of r.stationsPast.slice(-3)) {
