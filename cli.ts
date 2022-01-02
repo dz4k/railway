@@ -32,7 +32,7 @@ async function printReport(r: TrainReport) {
     if (r.stationAt) {
         map += `===[🚄 ${r.stationAt.displayName}]---`
     } else {
-        map += `=🚄-`
+        map += `===🚄---`
     }
     for (const station of r.stationsAhead.slice(0, 3)) {
         map += `${station.displayName}---`
