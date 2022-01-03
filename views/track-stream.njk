@@ -2,6 +2,10 @@
 
 <dl> <dt> ETA <dd> {{ report.eta | int }} min. <dt> Speed <dd> {{ report.speed }} km/h</dl>
 
+{%- if report.message -%}
+    <p class="error">{{report.message}}
+{%- endif -%}
+
 {#- Diagram map -#}
 <ul class="diagram-map">
 {%- for station in report.stationsPast.slice(-3) -%}

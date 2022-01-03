@@ -43,3 +43,7 @@ body {
     left: 0;
     transform: translate(-200%);
 }
+
+.error {
+    color:red;
+}

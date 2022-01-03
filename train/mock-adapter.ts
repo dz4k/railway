@@ -17,7 +17,9 @@ export default class MockTrainStatusAdapter implements TrainStatusAdapter {
             else closed()
             callback({
                 train: t,
-                state: { service: "running" },
+                state: traveled > 40 ?
+                    { service: "running" } :
+                    { service: "delayed", cause: "Delay: Breakage in Eskişehir station" },
                 lineTraveled: traveled += 5,
                 speed: 240
             })

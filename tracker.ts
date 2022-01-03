@@ -41,6 +41,8 @@ export default class RailwayTracker extends EventTarget {
             const state = t.state
             if (state.service === "canceled" || state.service === "delayed") {
                 message = state.cause
+            } else {
+                message = null
             }
 
             speed = t.speed
