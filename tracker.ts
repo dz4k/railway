@@ -75,6 +75,8 @@ export default class RailwayTracker extends EventTarget {
                 from,
                 to,
             })
+        }, () => {
+            this.dispatchEvent(new Event('closed'))
         })
     }
 

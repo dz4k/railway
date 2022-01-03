@@ -1,0 +1,22 @@
+{#- event stream -#}
+
+<dl>
+    {#- ETA -#}
+    <dt> ETA <dd> {{ report.eta | int }}
+    {#- Speed -#}
+    <dt> Speed <dd> {{ report.speed }}
+</dl>
+
+{#- Diagram map -#}
+<ul class="diagram-map">
+{%- for station in report.stationsPast.slice(-3) -%}
+    <li {{ 'class=after' if loop.last and not report.stationAt }}>{{station.name}}
+{%- endfor -%}
+{%- if report.stationAt -%}
+    <li class="at">{{report.stationAt.name}}
+{%- endif -%}
+{%- for station in report.stationsAhead.slice(0, 3) -%}
+    <li>{{station.name}}
+{%- endfor -%}
+
+{#- event stream -#}

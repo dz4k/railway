@@ -15,8 +15,21 @@ export default async function runCommandLine(
     
     const code = await ask("Please enter the code on your ticket: ")
     const tracker = new RailwayTracker(code, trains, routes, tickets);
-    tracker.track(printReport)
+
+    tracker.addEventListener('report', onReport)
+
+    tracker.addEventListener('closed', function listener() {
+        tracker.removeEventListener('report', onReport)
+        tracker.removeEventListener('closed', listener)
+    })
+
     rl.close()
+}
+
+function onReport(e: Event) {
+    printReport(
+        // @ts-ignore
+        e.detail as TrainReport)
 }
 
 async function printReport(r: TrainReport) {

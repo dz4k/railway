@@ -38,5 +38,5 @@ export interface TrainStatus {
  * common interface.
  */
 export interface TrainStatusAdapter {
-	subscribe(t: Train, callback: (t: TrainStatus) => void): number | null
+	subscribe(t: Train, callback: (t: TrainStatus) => void, closed: () => void): number | null
 }

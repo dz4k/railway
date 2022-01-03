@@ -1,0 +1,12 @@
+
+{% extends 'include/layout.njk' %}
+
+{% block content %}
+    <h1>Railway Tracking System</h1>
+
+    <form method="GET" action="/track" class="ticket-entry-form">
+        <label for="ticket">Enter the tracking number on your ticket</label>
+        <input type="text" name="ticket" id="ticket">
+        <input type="submit" value="Track">
+    </form>
+{% endblock %}

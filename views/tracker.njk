@@ -1,0 +1,11 @@
+
+{% extends 'include/layout.njk' %}
+
+{% block content %}
+    <h1>Route: {{ route.displayName }}</h1>
+
+    <div class="tracker" 
+        hx-sse="connect:/track/stream?ticket={{ ticketId }} swap:report">
+        Loading train status...
+    </div>
+{% endblock %}
