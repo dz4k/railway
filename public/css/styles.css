@@ -7,3 +7,39 @@ body {
     max-width: 80ch;
     margin: auto;
 }
+
+.diagram-map {
+    position: relative;
+}
+
+.diagram-map::before {
+    content: '';
+    display: block;
+    width: 3px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.75em;
+    background: #4af;
+}
+
+.diagram-map > * {
+    margin: 1em 0;
+    position: relative;
+}
+
+.diagram-map .after::after {
+    content: '🚄';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-200%, -100%);
+}
+
+.diagram-map .at::before {
+    content: '🚄';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-200%);
+}
